@@ -1,0 +1,65 @@
+<div class="row my-4">
+    <div class="col-md-6">
+        <h3>Liste des personnes : </h3>
+    </div>
+    <div (click)="showForm = !showForm" class="col-md-6 text-right">
+        <button class="btn btn-dark btn-sm">
+            <i class="fa fa-plus"></i>
+            new Task</button>
+            <div style="margin-top: 20px;" mar>
+                <input (keyup)="serchTasks()" [(ngModel)]="serchText" placeholder="serch..." type="text" class="form-control"></div>
+
+    </div>
+</div>
+<div *ngIf="showForm" class="row">
+    <div class="col-md-6 mx-auto">
+<div class="form-group">
+
+    <label for="firstName">firstName</label>
+    <input [(ngModel)]="person.firstName" id="firstName" type="text" class="form-control">
+    <label for="lastName">lastName</label>
+    <input [(ngModel)]="person.lastName" id="lastName" type="text" class="form-control">
+    <label for="password">password</label>
+    <input [(ngModel)]="person.password" id="password" type="text" class="form-control">
+
+
+</div>
+<div class="form-check my-2">
+  <label class="form-check-label">
+    <input [(ngModel)]="person.completed" type="checkbox" class="form-check-input"   >
+    Completed
+  </label>
+
+</div>
+<button *ngIf="etatForm" (click)="updateTask()" class="btn btn-warning btn-block ">
+    <i class="fa fa-refrech"></i>
+    Update Task</button>
+<button *ngIf="!etatForm" (click)="persistTask()" class="btn btn-succes btn-block ">
+    <i class="fa fa-send"></i>
+    new Task</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+       <ul class="list-group">
+
+        <li *ngFor="let task of people" class="list-group-item d-flex justify-content-between align-items-center " >
+            <button (click)="editTask(task)" class="btn btn-warning btn-sm">
+                <i class="fa fa-pencil"></i>
+            </button>
+            {{task.id}}
+          <span>&nbsp;&nbsp;</span> <!-- Ajoute un espace -->
+            {{task.firstName}}
+          <span>&nbsp;&nbsp;</span> <!-- Ajoute un espace -->
+            {{task.lastName}}
+          <span>&nbsp;&nbsp;</span> <!-- Ajoute un espace -->
+           {{task.password}}
+
+            <button (click)="deleteTask(task.id)" class="btn btn-sm btn-dark">
+                <i class="fa fa-trash"></i>
+            </button>
+        </li>
+
+       </ul>
+    </div>
+</div>
